@@ -1,38 +1,174 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+a {
+  color: #000000;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.box {
+  height: 40vmin;
+  max-height: 35rem;
+  max-width: 35rem;
+  width: 40vmin;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.button {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  font-size: 2rem;
+  height: 40%;
+  justify-self: center;
+  min-height: 4rem;
+  min-width: 6rem;
+  width: 60%;
+}
+
+footer {
+  display: grid;
+  font-size: 1.5rem;
+  height: 8vh;
+}
+
+.horizontalGrouping {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+header {
+  display: flex;
+  font-size: 3rem;
+  justify-content: center;
+}
+
+.inputs {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  max-width: 100%;
+  min-height: 50vh;
+  min-width: 30rem;
+}
+
+.leftSide {
+  display: block;
+}
+
+.letterBox {
+  font-size: 2vmin;
+  height: 3vmin;
+  width: 2vmin;
+}
+
+.letterBoxesX {
+  display: flex;
+  gap: 6.5vmin;
+  justify-content: center;
+}
+
+.letterBoxesY {
+  align-items: center;
+  display: grid;
+  gap: 5.5vmin;
+}
+
+.main {
+  background-color: #ffe0e0;
+  font-size: 2rem;
+  min-height: 100vh;
+}
+
+.numSelect {
+  display: flex;
+  justify-content: center;
+}
+
+.outputs {
+  display: grid;
+  grid-template-rows: 20% 80%;
+  height: 27vh;
+  max-width: 100%;
+}
+
+p {
+  display: flex;
+  justify-content: left;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+}
+
+p.centered {
+  justify-content: center;
+}
+
+.results {
+  background-color: #ffffff;
+  border: #000000 0.1rem solid;
+  border-radius: 0.5rem;
+  margin-bottom: 1%;
+  margin-left: 10%;
+  overflow: auto;
+  width: 80%;
+  word-wrap: break-word;
+}
+
+.selection {
+  padding: 1rem;
+}
+
+.settings {
+  display: grid;
+  gap: 2rem;
+  justify-content: center;
+  min-height: 30rem;
+  min-width: 30rem;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  width: 40vmin;
+}
+
+.spacer {
+  height: 5vh;
+}
+
+.title {
+  display: grid;
+  height: fit-content;
+  margin: auto;
+  min-height: 10vh;
+  width: fit-content;
+}
+
+/* Mobile Adjustments */
+
+@media (max-width: 900px) {
+  .box {
+    height: 75vmin;
+    width: 75vmin;
   }
-  to {
-    transform: rotate(360deg);
+
+  .inputs {
+    min-height: 20rem;
+    min-width: 20rem;
+  }
+
+  .letterBox {
+    font-size: 6vmin;
+    height: 9vmin;
+    width: 6vmin;
+  }
+  
+  .letterBoxesX {
+    gap: 9vmin;
+  }
+  
+  .letterBoxesY {
+    gap: 7vmin;
+  }
+
+  .settings {
+    min-height: 20rem;
+    min-width: 20rem;
   }
 }
