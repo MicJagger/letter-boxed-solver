@@ -3,12 +3,6 @@ import box from './content/box.png';
 import { KeyboardEvent, MouseEvent } from 'react'
 import wasm from './wasm';
 
-function wasmTest(): bigint {
-  const a = BigInt(5);
-  const b = BigInt(8);
-  return wasm.add(a, b);
-}
-
 function App() {
 
     const handleKey = (key: KeyboardEvent<HTMLInputElement>, destination: string) => {
@@ -60,9 +54,25 @@ function App() {
         clearResults();
         // solve
 
-        // examples
-        printResult("solving with letters " + letters + " and word count of " + wordCount);
-        printResult(wasmTest().toString());
+        // fetches local wordlist.txt inside ../public/ and passes text into wasm
+        fetch("wordlist.txt")
+            .then((response) => response.text())
+            .then((text) => {
+                const results: string = wasm.solve(text, letters + wordCount);
+                var current: string = "";
+                console.log("results computed");
+                // print results
+                for (let i = 0; i < results.length; i++) {
+                    if (results[i] === "\n") {
+                        printResult(current);
+                        current = "";
+                    }
+                    else {
+                        current = current.concat(results[i]);
+                    }
+                }
+            })
+            .catch((error) => console.error(error));
     }
 
     const clearResults = () => {

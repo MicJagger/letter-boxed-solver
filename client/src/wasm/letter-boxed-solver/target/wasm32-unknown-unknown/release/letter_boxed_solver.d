@@ -1,1 +1,0 @@
-C:\Users\micha\files\code\repos\letter-boxed-solver\client\src\wasm\letter-boxed-solver\target\wasm32-unknown-unknown\release\letter_boxed_solver.wasm: C:\Users\micha\files\code\repos\letter-boxed-solver\client\src\wasm\letter-boxed-solver\src\lib.rs
