@@ -3,13 +3,12 @@ use std::io::prelude::*;
 
 fn main() -> std::io::Result<()> {
     // input file
-    let mut input = File::open("../english-words/words_alpha.txt")?;
+    let mut input = File::open("./words.txt")?;
     let mut contents = String::new();
     input.read_to_string(&mut contents)?;
     // output file
     let mut output = File::create("../client/public/wordlist.txt")?;
 
-    //let mut chars = contents.chars();
     let chars: Vec<char> = contents.chars().collect();
     let mut current_word: String = "".to_string();
     let mut i = 0;
@@ -27,7 +26,7 @@ fn main() -> std::io::Result<()> {
             // if double letter, skip word
             else {
                 for j in i..contents.len() {
-                    if chars[j] == '\r' {
+                    if chars[j] == '\r' || chars[j] == '\n' {
                         break;
                     }
                     i += 1;
@@ -37,7 +36,6 @@ fn main() -> std::io::Result<()> {
         }
         i += 1;
     } 
-    //
 
     Ok(())
 }

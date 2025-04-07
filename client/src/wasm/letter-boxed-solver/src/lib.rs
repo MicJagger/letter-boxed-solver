@@ -13,6 +13,10 @@ impl WordSet {
     fn insert(&mut self, word: &str, bitset: u32) {
         self.words.insert(word.to_string(), bitset);
     }
+
+    fn get_map(&mut self) -> &mut BTreeMap<String, u32> {
+        &mut self.words
+    }
 }
 
 
@@ -20,8 +24,8 @@ fn generate_bitset(word: &str) -> u32 {
     let mut value: u32 = 0;
     let chars: Vec<char> = word.chars().collect();
     for i in 0..word.len() {
-        let char_value = chars[i].to_digit(10).unwrap();
-        value = value | (1 << char_value);
+        let char_value: u8 = chars[i] as u8;
+        value = value | (1 << (char_value - 97));
     }
     return value;
 }
@@ -105,8 +109,11 @@ pub fn solve(word_list: String, input: String) -> String {
     // inits
     let word_count = input.chars().nth(12).unwrap().to_digit(10).unwrap();
     let letters = &input[0..12];
-    let mut words: Vec<WordSet> = vec![WordSet::new()];
+    let mut words: Vec<WordSet> = vec![];
     let mut results: String = "".to_string();
+    for _i in 0..26 {
+        words.push(WordSet::new());
+    }
 
     // gather possible words
     let chars: Vec<char> = word_list.chars().collect();
@@ -115,7 +122,7 @@ pub fn solve(word_list: String, input: String) -> String {
     while i < word_list.len() {
         if chars[i] == '\n' {
             if check_word(&current_word, letters) == true {
-                let start_letter_index = (current_word.chars().nth(0).unwrap().to_digit(10).unwrap() - 97) as usize;
+                let start_letter_index = ((current_word.chars().nth(0).unwrap() as u8) - 97) as usize;
                 let index_map = words.iter_mut().nth(start_letter_index).unwrap();
                 index_map.insert(&current_word, generate_bitset(&current_word));
             }
@@ -129,65 +136,14 @@ pub fn solve(word_list: String, input: String) -> String {
 
     // solve
 
+    let start_letter_index = (("s".chars().nth(0).unwrap() as u8) - 97) as usize;
+    let map = words.iter_mut().nth(start_letter_index).unwrap();
+    for (word, bitset) in map.get_map().into_iter() {
+        results += &word;
+        //results += " ";
+        //results += &format!("{:x}", bitset).to_string();
+        results += "\n";
+    }
+
     return results;
 }
-
-
-/*
-if prev_side == TOP {
-            if check_side(chars[0], &left) {
-                prev_side = LEFT;
-            }
-            else if check_side(chars[0], &left) {
-                prev_side = LEFT;
-            }
-            else if check_side(chars[0], &left) {
-                prev_side = LEFT;
-            }
-            else {
-                return false;
-            }
-        }
-        else if prev_side == LEFT {
-            if check_side(chars[0], &left) {
-                prev_side = LEFT;
-            }
-            else if check_side(chars[0], &left) {
-                prev_side = LEFT;
-            }
-            else if check_side(chars[0], &left) {
-                prev_side = LEFT;
-            }
-            else {
-                return false;
-            }
-        }
-        else if prev_side == RIGHT {
-            if check_side(chars[0], &left) {
-                prev_side = LEFT;
-            }
-            else if check_side(chars[0], &left) {
-                prev_side = LEFT;
-            }
-            else if check_side(chars[0], &left) {
-                prev_side = LEFT;
-            }
-            else {
-                return false;
-            }
-        }
-        else { // prev_side == BOTTOM
-            if check_side(chars[0], &left) {
-                prev_side = LEFT;
-            }
-            else if check_side(chars[0], &left) {
-                prev_side = LEFT;
-            }
-            else if check_side(chars[0], &left) {
-                prev_side = LEFT;
-            }
-            else {
-                return false;
-            }
-        }
-*/
