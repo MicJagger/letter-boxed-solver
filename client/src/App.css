@@ -51,10 +51,6 @@ header {
   min-width: 30rem;
 }
 
-.leftSide {
-  display: block;
-}
-
 .letterBox {
   font-size: 2vmin;
   height: 3vmin;
@@ -77,6 +73,12 @@ header {
   background-color: #ffe0e0;
   font-size: 2rem;
   min-height: 100vh;
+}
+
+.notes {
+  font-size: 1.2rem;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .numSelect {
@@ -117,14 +119,16 @@ p.centered {
   padding: 1rem;
 }
 
+.red {
+  color: #ff0000;
+}
+
 .settings {
   display: grid;
   gap: 2rem;
   justify-content: center;
   min-height: 30rem;
   min-width: 30rem;
-  padding-bottom: 2rem;
-  padding-top: 2rem;
   width: 40vmin;
 }
 
@@ -165,6 +169,11 @@ p.centered {
   
   .letterBoxesY {
     gap: 7vmin;
+  }
+
+  .notes {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .settings {

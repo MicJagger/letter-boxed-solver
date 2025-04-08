@@ -2,7 +2,7 @@
 
 Clone the repository
 
-1. ``git clone LINK --recursive``
+1. ``git clone LINK``
 
 Prepare the word list
 
