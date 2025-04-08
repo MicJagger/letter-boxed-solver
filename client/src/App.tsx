@@ -5,7 +5,7 @@ import wasm from './wasm';
 
 function App() {
 
-    async function nextBox(event: React.FormEvent<HTMLInputElement>, thisLocation: number) {
+    const nextBox = (event: React.FormEvent<HTMLInputElement>, thisLocation: number) => {
         const next = document.getElementById("letterInput" + (thisLocation + 1).toString());
         next?.focus();
     }
@@ -20,17 +20,18 @@ function App() {
 
     const handleSolveButton = (event: MouseEvent<HTMLButtonElement>) => {
         console.log("solve button pressed");
+        clearResults();
         var letters: string = "";
         for (let i = 0; i < 12; i++) {
             const box = document.getElementById("letterInput" + i.toString()) as HTMLInputElement;
             let letter = box!.value.toLowerCase();
             if (letter.charCodeAt(0) < 97 || letter.charCodeAt(0) > 122 || letter === "") {
-                invalidInput("invalid character");
+                printOut("Invalid Character");
                 return;
             }
             for (let j = 0; j < letters.length; j++) {
                 if (letter === letters.charAt(j)) {
-                    invalidInput("duplicate letter");
+                    printOut("Duplicate Letters");
                     return;
                 }
             }
@@ -44,14 +45,12 @@ function App() {
             }
         }
         if (wordCount === "") {
-            invalidInput("word count required");
+            printOut("Word Count Required");
             return;
         }
-        clearResults();
-        // solve
 
-        // fetches local wordlist.txt inside ../public/ and passes text into wasm
-        fetch("wordlist.txt")
+        // solve
+        fetch("wordlist.txt") // fetches local wordlist.txt inside ../public/ and passes text into wasm
             .then((response) => response.text())
             .then((text) => {
                 const results: string = wasm.solve(text, letters + wordCount);
@@ -86,10 +85,6 @@ function App() {
         results?.appendChild(newResult);
     }
 
-    const invalidInput = (reason: string) => {
-        console.log("input invalid: " + reason);
-    }
-
     return (
         <div className="main">
 
@@ -97,8 +92,6 @@ function App() {
                 <header>Letter Boxed Solver</header>
                 <p className="centered">A New York Times Game</p>
             </section>
-
-            <div className="spacer" />
 
             <section id="inputs" className="inputs">
                 <section id="letterbox" className="letterbox">
@@ -148,15 +141,10 @@ function App() {
                     <button id="enter" className="button" onClick={handleSolveButton}>Solve</button>
 
                     <section id="notes" className="notes">
-                        <p>
-                            - This does not use the official dictionary, and will likely have words that are not valid in the official game.
-                        </p>
-                        <p>
-                            - It is not recommended to run the 5 words option, or maybe even 4 on an old or low-end device.
-                        </p>
-                        <p>
-                            - It is uncommon to solve in 1 word.
-                        </p>
+                        <p>- This does not use the official dictionary, and will very likely have words that are not valid in the official game.</p>
+                        <p>- It is not recommended to run the 5 words option, especially on old or low-end devices.</p>
+                        <p>- It is uncommon to solve in 1 word.</p>
+                        <p>- This is just for fun, don't spoil playing the game!</p>
                     </section>
                 </section>
             </section>

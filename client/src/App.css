@@ -125,21 +125,18 @@ p.centered {
 
 .settings {
   display: grid;
-  gap: 2rem;
+  gap: 1.5rem;
   justify-content: center;
   min-height: 30rem;
   min-width: 30rem;
   width: 40vmin;
 }
 
-.spacer {
-  height: 5vh;
-}
-
 .title {
   display: grid;
   height: fit-content;
   margin: auto;
+  margin-bottom: 2vh;
   min-height: 10vh;
   width: fit-content;
 }

@@ -23,7 +23,7 @@ impl WordSet {
     }*/
 }
 
-
+// returns any &str as a bitset of 1s to represent which letters are used >= 1 
 fn generate_bitset(word: &str) -> u32 {
     let mut value: u32 = 0;
     let chars: Vec<char> = word.chars().collect();
@@ -34,6 +34,7 @@ fn generate_bitset(word: &str) -> u32 {
     return value;
 }
 
+// returns if the word is valid within the ordered letters
 fn check_word(word: &str, letters: &str) -> bool {
 
     const TOP: i8 = 0;
@@ -57,6 +58,7 @@ fn check_word(word: &str, letters: &str) -> bool {
     let right: Vec<char> = (&letters[6..9]).chars().collect();
     let bottom: Vec<char> = (&letters[9..12]).chars().collect();
     let mut prev_side: i8;
+    
     if check_side(chars[0], &top) {
         prev_side = TOP;
     }
@@ -139,6 +141,7 @@ fn test_combinations(words: &Vec<WordSet>, word_stack: &Vec<&String>, letter_ind
 
 #[wasm_bindgen]
 pub fn solve(word_list: String, input: String) -> String {
+    // initialize variables
     let letters = &input[0..12];
     let mut words: Vec<WordSet> = vec![];
     for _i in 0..26 {
