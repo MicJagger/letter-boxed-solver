@@ -14,9 +14,13 @@ impl WordSet {
         self.words.insert(word.to_string(), bitset);
     }
 
-    fn get_map(&mut self) -> &mut BTreeMap<String, u32> {
-        &mut self.words
+    fn get_map(&self) -> &BTreeMap<String, u32> {
+        &self.words
     }
+
+    /*fn get_mut_map(&mut self) -> &mut BTreeMap<String, u32> {
+        &mut self.words
+    }*/
 }
 
 
@@ -103,14 +107,40 @@ fn check_word(word: &str, letters: &str) -> bool {
     return true;
 }
 
+fn test_combinations(words: &Vec<WordSet>, word_stack: &Vec<&String>, letter_index: usize, word_count: u32, target_bitset: u32, input_bitset: u32) -> String {
+    let mut results: String = "".to_string();
+    if word_count == 1 {
+        let map = words.iter().nth(letter_index).unwrap();
+        for (word, bitset) in map.get_map().into_iter() {
+            if (*bitset | input_bitset) == target_bitset {
+                for j in 0..word_stack.len() {
+                    results += &word_stack[j];
+                    results += " - ";
+                }
+                results += word;
+                results += "\n";
+            }
+        }
+    }
+    else { // word_count > 1
+        let map = words.iter().nth(letter_index).unwrap();
+        for (word, bitset) in map.get_map().into_iter() {
+            if (*bitset | input_bitset) != target_bitset {
+                let mut temp_word_stack = word_stack.clone();
+                temp_word_stack.push(word);
+                let last_letter = word.chars().last().unwrap() as u8 - 97;
+                results += &test_combinations(words, &temp_word_stack, last_letter as usize, word_count - 1, target_bitset, *bitset | input_bitset);
+            }
+        }
+    }
+    return results;
+}
+
 
 #[wasm_bindgen]
 pub fn solve(word_list: String, input: String) -> String {
-    // inits
-    let word_count = input.chars().nth(12).unwrap().to_digit(10).unwrap();
     let letters = &input[0..12];
     let mut words: Vec<WordSet> = vec![];
-    let mut results: String = "".to_string();
     for _i in 0..26 {
         words.push(WordSet::new());
     }
@@ -135,14 +165,13 @@ pub fn solve(word_list: String, input: String) -> String {
     }
 
     // solve
-
-    let start_letter_index = (("s".chars().nth(0).unwrap() as u8) - 97) as usize;
-    let map = words.iter_mut().nth(start_letter_index).unwrap();
-    for (word, bitset) in map.get_map().into_iter() {
-        results += &word;
-        //results += " ";
-        //results += &format!("{:x}", bitset).to_string();
-        results += "\n";
+    let word_count = input.chars().nth(12).unwrap().to_digit(10).unwrap();
+    let target_bitset = generate_bitset(letters);
+    let mut results: String = "".to_string();
+    let letters_chars: Vec<char> = letters.chars().collect();
+    for i in 0..letters.len() {
+        let letter_index = (letters_chars[i] as u8) - 97;
+        results += &test_combinations(&words, &vec![], letter_index as usize, word_count, target_bitset, 0);
     }
 
     return results;
