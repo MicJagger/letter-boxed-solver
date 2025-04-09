@@ -1,7 +1,7 @@
-import './App.css';
-import box from './content/box.png';
-import { KeyboardEvent, MouseEvent } from 'react'
-import wasm from './wasm';
+import './App.css'
+import box from './content/box.png'
+import { MouseEvent } from 'react'
+import wasm from './wasm'
 
 function App() {
 
@@ -157,6 +157,7 @@ function App() {
             </section>
 
             <footer>
+                <a href="https://github.com/MicJagger/letter-boxed-solver" target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a href="https://michaeljagiello.micjagger.net/" target="_blank" rel="noopener noreferrer">Michael Jagiello</a>
                 <a href="https://www.nytimes.com/puzzles/letter-boxed" target="_blank" rel="noopener noreferrer">Letter Boxed - The New York Times</a>
             </footer>
