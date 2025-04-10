@@ -87,81 +87,72 @@ function App() {
 
     return (
         <div className="main">
-
-            <section id="title" className="title">
+            <section className="title">
                 <header>Letter Boxed Solver</header>
-                <p className="centered">A New York Times Game</p>
+                <a href="https://www.nytimes.com/puzzles/letter-boxed" className="subtitle" target="_blank" rel="noopener noreferrer">Letter Boxed - The New York Times</a>
             </section>
 
-            <section id="inputs" className="inputs">
-                <section id="letterbox" className="letterbox">
-                    <div id="letterBoxesX" className="letterBoxesX">
-                        <input type="text" id="letterInput0" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 0)} />
-                        <input type="text" id="letterInput1" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 1)} />
-                        <input type="text" id="letterInput2" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 2)} />
-                    </div>
-
-                    <div id="horizontalGrouping" className="horizontalGrouping">
-                        <div id="letterBoxesY" className="letterBoxesY">
-                            <input type="text" id="letterInput3" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 3)} />
-                            <input type="text" id="letterInput4" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 4)} />
-                            <input type="text" id="letterInput5" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 5)} />
+            <section className="columns">
+                <section className="inputs">
+                    <section className="letters">
+                        <div className="letterBoxesX">
+                            <input type="text" id="letterInput0" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 0)} />
+                            <input type="text" id="letterInput1" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 1)} />
+                            <input type="text" id="letterInput2" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 2)} />
                         </div>
-
-                        <div id="box" className="box">
-                            <img src={box} className="box" alt="sample box" />
+                        <div id="horizontalGrouping" className="horizontalGrouping">
+                            <div className="letterBoxesY">
+                                <input type="text" id="letterInput3" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 3)} />
+                                <input type="text" id="letterInput4" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 4)} />
+                                <input type="text" id="letterInput5" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 5)} />
+                            </div>
+                            <div id="box" className="box-container">
+                                <img src={box} className="box" alt="sample box" />
+                            </div>
+                            <div className="letterBoxesY">
+                                <input type="text" id="letterInput6" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 6)} />
+                                <input type="text" id="letterInput7" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 7)} />
+                                <input type="text" id="letterInput8" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 8)} />
+                            </div>
                         </div>
-
-                        <div id="letterBoxesY" className="letterBoxesY">
-                            <input type="text" id="letterInput6" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 6)} />
-                            <input type="text" id="letterInput7" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 7)} />
-                            <input type="text" id="letterInput8" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 8)} />
+                        <div className="letterBoxesX">
+                            <input type="text" id="letterInput9" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 9)} />
+                            <input type="text" id="letterInput10" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 10)} />
+                            <input type="text" id="letterInput11" className="letterBox" maxLength={1} />
                         </div>
-                    </div>
+                    </section>
 
-                    <div id="letterBoxesX" className="letterBoxesX">
-                        <input type="text" id="letterInput9" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 9)} />
-                        <input type="text" id="letterInput10" className="letterBox" maxLength={1} onInput={(event) => nextBox(event, 10)} />
-                        <input type="text" id="letterInput11" className="letterBox" maxLength={1} />
-                    </div>
-                </section>
-                
-                <section id="settings" className="settings">
-                    <div className="tophalf">
-                        <p className="horizontalGrouping centered">Word Count:</p>
-                        <div id="numSelect" className="numSelect">
+                    <section className="settings">
+                        <p className="horizontalGrouping centered subtitle">Word Count:</p>
+                        <div className="numSelect">
                             <div className="selection"><input type="radio" name="num" value="1" />1</div>
                             <div className="selection"><input type="radio" name="num" value="2" />2</div>
                             <div className="selection"><input type="radio" name="num" value="3" />3</div>
                             <div className="selection"><input type="radio" name="num" value="4" />4</div>
-                            <div className="selection red"><input type="radio" name="num" value="5" />5</div>
                         </div>
-                    </div>
-                    <button id="clear" className="button" onClick={handleClearButton}>Clear</button>
-                    <button id="enter" className="button" onClick={handleSolveButton}>Solve</button>
+                        <div className="buttons">
+                            <button className="button" onClick={handleClearButton}>Clear</button>
+                            <button className="button" onClick={handleSolveButton}>Solve</button>
+                        </div>
 
-                    <section id="notes" className="notes">
-                        <p>- This does not use the official dictionary, and will very likely have words that are not valid in the official game.</p>
-                        <p>- It is not recommended to run the 5 words option, especially on old or low-end devices.</p>
-                        <p>- It is uncommon to solve in 1 word.</p>
-                        <p>- This is just for fun, don't spoil playing the game!</p>
+                        <section className="notes">
+                            <p>- This does not have the NYT's dictionary, and will have invalid words.</p>
+                            <p>- It is uncommon to solve in 1 word.</p>
+                            <p>- This is just for fun, don't spoil playing the game!</p>
+                        </section>
                     </section>
                 </section>
-            </section>
 
-            <section id="outputs" className="outputs">
-                <p className="centered">Results:</p>
-                <section id="results" className="results">
-
+                <section id="outputs" className="outputs">
+                    <p className="centered">Results:</p>
+                    <section id="results" className="results"></section>
                 </section>
             </section>
 
             <footer>
                 <a href="https://github.com/MicJagger/letter-boxed-solver" target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a href="https://michaeljagiello.micjagger.net/" target="_blank" rel="noopener noreferrer">Michael Jagiello</a>
-                <a href="https://www.nytimes.com/puzzles/letter-boxed" target="_blank" rel="noopener noreferrer">Letter Boxed - The New York Times</a>
             </footer>
-
         </div>
     );
 }

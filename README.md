@@ -19,4 +19,5 @@ Build the web assembly
 
 Launch the site
 
-9. ``npm run build`` for dev mode
+9. ``npm install``
+10. ``npm run build`` for dev mode

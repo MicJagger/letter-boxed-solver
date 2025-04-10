@@ -5,27 +5,46 @@ a {
 }
 
 .box {
-  height: 40vmin;
+  height: 90%;
+  padding: 5%;
+  width: 90%;
+}
+
+.box-container {
+  height: 30vmin;
   max-height: 35rem;
   max-width: 35rem;
-  width: 40vmin;
+  width: 30vmin;
 }
 
 .button {
   background-color: #ffffff;
   border-radius: 1rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   height: 40%;
   justify-self: center;
-  min-height: 4rem;
-  min-width: 6rem;
-  width: 60%;
+  min-height: 3rem;
+  min-width: 4rem;
+  width: 40%;
+}
+
+.buttons {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  min-height: 75vh;
 }
 
 footer {
   display: grid;
-  font-size: 1.5rem;
+  font-size: calc(1rem + 0.25vmin);
   height: 8vh;
+  margin-top: 2vh;
 }
 
 .horizontalGrouping {
@@ -44,10 +63,8 @@ header {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
+  justify-content: space-around;
   max-width: 100%;
-  min-height: 50vh;
   min-width: 30rem;
 }
 
@@ -69,6 +86,10 @@ header {
   gap: 5.5vmin;
 }
 
+.letters {
+  margin: 0.5rem;
+}
+
 .main {
   background-color: #ffe0e0;
   font-size: 2rem;
@@ -76,9 +97,7 @@ header {
 }
 
 .notes {
-  font-size: 1.2rem;
-  padding-left: 5%;
-  padding-right: 5%;
+  margin: 0.5rem;
 }
 
 .numSelect {
@@ -88,26 +107,31 @@ header {
 
 .outputs {
   display: grid;
-  grid-template-rows: 20% 80%;
-  height: 27vh;
+  grid-template-rows: 10% 90%;
+  height: 75vh;
   max-width: 100%;
 }
 
 p {
   display: flex;
+  font-size: calc(1.2rem);
   justify-content: left;
   margin-block-start: 0px;
   margin-block-end: 0px;
 }
 
 p.centered {
+  align-items: center;
+  font-size: 2rem;
   justify-content: center;
 }
 
 .results {
+  align-self: center;
   background-color: #ffffff;
   border: #000000 0.1rem solid;
   border-radius: 0.5rem;
+  height: 90%;
   margin-bottom: 1%;
   margin-left: 10%;
   overflow: auto;
@@ -116,37 +140,41 @@ p.centered {
 }
 
 .selection {
-  padding: 1rem;
-}
-
-.red {
-  color: #ff0000;
+  font-size: 1.5rem;
+  padding: 0.5rem;
 }
 
 .settings {
   display: grid;
-  gap: 1.5rem;
+  gap: 1rem;
   justify-content: center;
-  min-height: 30rem;
-  min-width: 30rem;
-  width: 40vmin;
+  max-width: 30rem;
+  width: fit-content;
+}
+
+.subtitle {
+  font-size: 1.5rem;
 }
 
 .title {
   display: grid;
-  height: fit-content;
+  height: 12vh;
   margin: auto;
   margin-bottom: 2vh;
-  min-height: 10vh;
+  padding-top: 1vh;
   width: fit-content;
 }
 
-/* Mobile Adjustments */
+/* Mobile / Thin Adjustments */
 
-@media (max-width: 900px) {
-  .box {
-    height: 75vmin;
-    width: 75vmin;
+@media (max-width: 1000px) {
+  .box-container {
+    height: 50vmin;
+    width: 50vmin;
+  }
+
+  .columns {
+    display: block;
   }
 
   .inputs {
