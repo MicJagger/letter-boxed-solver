@@ -44,7 +44,9 @@ footer {
   display: grid;
   font-size: calc(1rem + 0.25vmin);
   height: 8vh;
+  margin: auto;
   margin-top: 2vh;
+  width: fit-content;
 }
 
 .horizontalGrouping {
