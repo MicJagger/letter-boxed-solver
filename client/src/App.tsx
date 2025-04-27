@@ -128,7 +128,7 @@ function App() {
                             <div className="selection"><input type="radio" name="num" value="1" />1</div>
                             <div className="selection"><input type="radio" name="num" value="2" />2</div>
                             <div className="selection"><input type="radio" name="num" value="3" />3</div>
-                            <div className="selection"><input type="radio" name="num" value="4" />4</div>
+                            <div className="selection warn"><input type="radio" name="num" value="4"/>4</div>
                         </div>
                         <div className="buttons">
                             <button className="button" onClick={handleClearButton}>Clear</button>
@@ -138,6 +138,7 @@ function App() {
                         <section className="notes">
                             <p>- This does not have the NYT's dictionary, and will have invalid words.</p>
                             <p>- It is uncommon to solve in 1 word.</p>
+                            <p>- 4 words can occasionally take a bit to solve.</p>
                             <p>- This is just for fun, don't spoil playing the game!</p>
                         </section>
                     </section>

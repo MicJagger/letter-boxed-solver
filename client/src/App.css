@@ -167,6 +167,10 @@ p.centered {
   width: fit-content;
 }
 
+.warn {
+  color: #c00000;
+}
+
 /* Mobile / Thin Adjustments */
 
 @media (max-width: 1000px) {
